@@ -17,7 +17,12 @@ h1 {
     z-index: 1;
   }
 }
-
+#myVideo {
+  width: 100vw;
+  height: 100lvh;
+  position: absolute;
+  z-index: -1;
+}
 .hero::before {
   content: "";
   z-index: 0;
@@ -38,7 +43,7 @@ h1 {
   z-index: -2;
   animation: scaleUp2 20s linear infinite;
 }
-.hero::after {
+/* .hero::after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -52,7 +57,7 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   animation: scaleUp 20s linear infinite;
-}
+} */
 @keyframes scaleUp {
   0% {
     scale: 1;
