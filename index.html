@@ -9,10 +9,19 @@
   </head>
   <body>
     <section
-      class="hero relative w-screen h-screen text-white grid grid-cols-2 md:grid-cols-6 contain-inline-size items-end p-4 md:p-6 gap-2 md:gap-4 bg-cover relative"
+      class="hero relative w-screen h-screen text-white grid grid-cols-2 md:grid-cols-6 contain-inline-size items-end p-4 md:p-6 gap-2 md:gap-4 bg-cover"
     >
       <video autoplay muted loop id="myVideo">
-        <source src="assets/images/bgvideo-2.mp4" type="video/mp4" />
+        <source
+          src="assets/mobile.mp4"
+          type="video/mp4"
+          media="(max-width: 768px)"
+        />
+        <source
+          src="assets/wide.mp4"
+          type="video/mp4"
+          media="(min-width: 769px)"
+        />
       </video>
       <!-- <video autoplay muted loop playsinline preload="metadata" width="100%">
         <source src="assets/images/bgvideo.mp4" type="video/mp4" />
@@ -25,21 +34,21 @@
           >Contact</a
         >
       </div>
-      <div class="pt-5 border-t border-white h-fit">
-        <h3 class="font-medium text-2xl">Just one chapter</h3>
-        <p class="text-xl">U.S Air Force</p>
-        <span class="text-xl opacity-50">Ze’ev Waisman</span>
-      </div>
       <!-- <div class="pt-5 border-t border-white h-fit">
         <h3 class="font-medium text-2xl">Just one chapter</h3>
         <p class="text-xl">U.S Air Force</p>
         <span class="text-xl opacity-50">Ze’ev Waisman</span>
       </div> -->
-      <div class="hidden md:block col-span-3"></div>
+      <!-- <div class="pt-5 border-t border-white h-fit">
+        <h3 class="font-medium text-2xl">Just one chapter</h3>
+        <p class="text-xl">U.S Air Force</p>
+        <span class="text-xl opacity-50">Ze’ev Waisman</span>
+      </div> -->
+      <!-- <div class="hidden md:block col-span-3"></div> -->
       <div
-        class="col-span-2 row-start-1 md:row-start-auto h-full md:h-fit text-white"
+        class="col-span-2 row-start-2 h-full md:h-fit text-white flex lg:block items-start justify-end flex-col"
       >
-        <h1 class="text-[8cqw] text-start md:text-end" style="line-height: 1">
+        <h1 class="text-[8cqw]" style="line-height: 1">
           Element4
         </h1>
       </div>
