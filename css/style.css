@@ -41,7 +41,7 @@ h1 {
   transform-origin: center;
   background: black;
   z-index: -2;
-  animation: scaleUp2 20s linear infinite;
+  /* animation: scaleUp2 20s linear infinite; */
 }
 /* .hero::after {
   content: "";
