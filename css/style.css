@@ -23,6 +23,7 @@ h1 {
   width: 100vw;
   height: 100lvh;
   position: absolute;
+  inset: 0;
   z-index: -1;
 }
 .hero::before {
@@ -33,7 +34,7 @@ h1 {
   position: absolute;
   user-select: none;
 }
-.hero video {
+/* .hero video {
   position: absolute;
   width: 67%;
   height: 53%;
@@ -43,8 +44,8 @@ h1 {
   transform-origin: center;
   background: black;
   z-index: -2;
-  /* animation: scaleUp2 20s linear infinite; */
-}
+  animation: scaleUp2 20s linear infinite;
+} */
 /* .hero::after {
   content: "";
   position: absolute;

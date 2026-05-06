@@ -11,22 +11,15 @@
     <section
       class="hero relative w-full h-screen text-white grid grid-cols-2 md:grid-cols-6 contain-inline-size items-end p-4 md:p-6 gap-2 md:gap-4 bg-cover"
     >
-      <video autoplay muted loop id="myVideo">
-        <source
-          src="assets/mobile.mp4"
-          type="video/mp4"
-          media="(max-width: 768px)"
-        />
-        <source
-          src="assets/wide.mp4"
-          type="video/mp4"
-          media="(min-width: 769px)"
-        />
-      </video>
-      <!-- <video autoplay muted loop playsinline preload="metadata" width="100%">
-        <source src="assets/images/bgvideo.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> -->
+      <video
+        id="myVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb6499c24b7e4dd497ac32/thumbnail-1-0.png?v=1778083033435"
+      ></video>
       <div class="col-span-full text-end">
         <a
           href="#"
@@ -97,5 +90,19 @@
         />
       </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+      const video = document.getElementById("myVideo");
+      const videoSrc =
+        "https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb6499c24b7e4dd497ac32/main.m3u8";
+
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = videoSrc;
+      }
+    </script>
   </body>
 </html>
