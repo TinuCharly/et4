@@ -11,15 +11,7 @@
     <section
       class="hero relative w-full h-screen text-white grid grid-cols-2 md:grid-cols-6 contain-inline-size items-end p-4 md:p-6 gap-2 md:gap-4 bg-cover"
     >
-      <video
-        id="myVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        poster="https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb6499c24b7e4dd497ac32/thumbnail-1-0.png?v=1778083033435"
-      ></video>
+      <video id="myVideo" autoplay muted loop playsinline></video>
       <div class="col-span-full text-end">
         <a
           href="#"
@@ -27,32 +19,11 @@
           >Contact</a
         >
       </div>
-      <!-- <div class="pt-5 border-t border-white h-fit">
-        <h3 class="font-medium text-2xl">Just one chapter</h3>
-        <p class="text-xl">U.S Air Force</p>
-        <span class="text-xl opacity-50">Ze’ev Waisman</span>
-      </div> -->
-      <!-- <div class="pt-5 border-t border-white h-fit">
-        <h3 class="font-medium text-2xl">Just one chapter</h3>
-        <p class="text-xl">U.S Air Force</p>
-        <span class="text-xl opacity-50">Ze’ev Waisman</span>
-      </div> -->
-      <!-- <div class="hidden md:block col-span-3"></div> -->
       <div
         class="col-span-2 row-start-2 h-full md:h-fit text-white flex lg:block items-start justify-end flex-col"
       >
         <h1 class="text-[8cqw]" style="line-height: 1">Element4</h1>
       </div>
-      <!-- <div class="pt-5 border-t border-white h-fit">
-        <h3 class="font-medium text-2xl">Just one chapter</h3>
-        <p class="text-xl">U.S Air Force</p>
-        <span class="text-xl opacity-50">Ze’ev Waisman</span>
-      </div>
-      <div class="pt-5 border-t border-white h-fit">
-        <h3 class="font-medium text-2xl">Just one chapter</h3>
-        <p class="text-xl">U.S Air Force</p>
-        <span class="text-xl opacity-50">Ze’ev Waisman</span>
-      </div> -->
     </section>
     <section
       id="about"
@@ -93,16 +64,61 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
       const video = document.getElementById("myVideo");
-      const videoSrc =
+
+      // SCREEN CHECK
+      const isMobile = window.innerWidth <= 768;
+
+      // DESKTOP
+      const desktopVideo =
         "https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb6499c24b7e4dd497ac32/main.m3u8";
 
+      const desktopPoster =
+        "https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb6499c24b7e4dd497ac32/thumbnail-1-0.png?v=1778083033435";
+
+      // MOBILE
+      const mobileVideo =
+        "https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb7870c24b7e4dd4997f71/main.m3u8";
+
+      const mobilePoster =
+        "https://video.gumlet.io/69fb542ec24b7e4dd49629bb/69fb7870c24b7e4dd4997f71/thumbnail-1-0.png?v=1778088079318";
+
+      // SELECT BASED ON SCREEN
+      const selectedVideo = isMobile ? mobileVideo : desktopVideo;
+
+      const selectedPoster = isMobile ? mobilePoster : desktopPoster;
+
+      // DYNAMIC PRELOAD
+      video.preload = isMobile ? "none" : "metadata";
+
+      // SET POSTER
+      video.poster = selectedPoster;
+
+      // LOAD HLS VIDEO
       if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(videoSrc);
+        const hls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+
+        hls.loadSource(selectedVideo);
         hls.attachMedia(video);
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = videoSrc;
+        // Safari Support
+        video.src = selectedVideo;
       }
+
+      // OPTIONAL:
+      // Reload correct video on resize crossing breakpoint
+
+      let wasMobile = isMobile;
+
+      window.addEventListener("resize", () => {
+        const nowMobile = window.innerWidth <= 768;
+
+        if (nowMobile !== wasMobile) {
+          location.reload();
+        }
+      });
     </script>
   </body>
 </html>
